@@ -46,14 +46,17 @@ public class MainActivity extends AppCompatActivity implements GetData.AsyncResp
 
             TextView sunrise=findViewById(R.id.timeSunrise);
             String timeSunrise=sys.getString("sunrise");
-            String timezone=sys.getString("timezone");
             Locale myLocale=new Locale("ru", "RU");
             SimpleDateFormat formatter=new SimpleDateFormat("HH:mm:ss", myLocale);
-            String dateString=formatter.format(new Date(Long.parseLong(timeSunrise)*1000+(60*60*1000)*4));
+            String dateString=formatter.format(new Date(Long.parseLong(timeSunrise)*1000+(60*60*1000)));
             sunrise.setText(dateString);
 
             TextView sunset=findViewById(R.id.timeSunset);
-            sunset.setText(weather.getString("sunset"));
+            String timeSunset=sys.getString("sunset");
+            //Locale myLocale=new Locale("ru", "RU");
+            //SimpleDateFormat formatter=new SimpleDateFormat("HH:mm:ss", myLocale);
+            dateString=formatter.format(new Date(Long.parseLong(timeSunset)*1000+(60*60*1000)));
+            sunset.setText(dateString);
 
         }catch (JSONException e){
             e.printStackTrace();
