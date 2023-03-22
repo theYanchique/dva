@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">dva</string>
     <string name="temp_text">Температура</string>
+    <string name="title_text_weather">Погода</string>
+    <string name="sunset_text">Время захода</string>
+    <string name="sunrise_text">Время восхода</string>
+    <string name="pressure_text">Давление</string>
+    <string name="temperature_text">Температура</string>
+    <string name="searchFieldEditText">Введите название города</string>
+    <string name="searchButtonText">Поиск</string>
+    <string name="city_text">Город</string>
 </resources>

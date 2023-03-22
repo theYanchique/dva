@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="temp_text">Температура</string>
+    <string name="sunset_text">Время захода</string>
+    <string name="searchFieldEditText">Введите название города</string>
+    <string name="city_text">Город</string>
 </resources>

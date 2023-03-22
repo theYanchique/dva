@@ -2,8 +2,12 @@ package com.example.dva;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -15,19 +19,46 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements GetData.AsyncResponse {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, GetData.AsyncResponse {
 
     private static final String TAG= "MainActivity";
+    private Button searchButton;
+    private EditText searchField;
+    private TextView cityName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        searchButton=findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(this);
+        searchField=findViewById(R.id.searchField);
+        cityName=findViewById(R.id.cityName);
+    }
+
+    @Override
+    public void onClick(View v) {
+        //URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Samara&lang=ru&appid=c1438b7ab7adcbb5ffee5d716f1141db&units=metric");
+        URL url=buildUrl(searchField.getText().toString());
+        cityName.setText(searchField.getText().toString());
+        new GetData(this).execute(url);
+    }
+    private URL buildUrl (String city){
+        String BASE_URL="https://api.openweathermap.org/data/2.5/weather";
+        String PARAM_CITY="q";
+        String PARAM_APPID="appid";
+        String appid_value="c1438b7ab7adcbb5ffee5d716f1141db";
+
+        Uri builtUri=Uri.parse(BASE_URL).buildUpon().appendQueryParameter(PARAM_CITY,city).appendQueryParameter(PARAM_APPID,appid_value).build();
+        URL url= null;
         try {
-            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Samara&lang=ru&appid=c1438b7ab7adcbb5ffee5d716f1141db&units=metric");
-            new GetData(this).execute(url);
+            url=new URL(builtUri.toString());
+
         }catch (MalformedURLException e){
             e.printStackTrace();
         }
+        Log.d(TAG, "buildUrl: "+url);
+        return url;
     }
 
     @Override
