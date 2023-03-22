@@ -64,35 +64,40 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/city_text"
-                    android:textColor="#616161" />
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/temp_text"
-                    android:textColor="#616161" />
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/pressure_text"
-                    android:textColor="#616161" />
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/sunset_text"
-                    android:textColor="#616161" />
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/sunset_text"
-                    android:textColor="#616161" />
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -100,36 +105,46 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/cityName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/city_text"/>
+                    android:text="@string/city_text"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/temperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/temp_text"/>
+                    android:text="@string/temp_text"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/pressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/pressure_text"/>
+                    android:text="@string/pressure_text"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/timeSunrise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/sunrise_text"/>
+                    android:text="@string/sunrise_text"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/timeSunset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/sunset_text"/>
+                    android:text="@string/sunset_text"
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 </LinearLayout>
