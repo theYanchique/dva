@@ -9,4 +9,7 @@
     <string name="searchFieldEditText">Введите название города</string>
     <string name="searchButtonText">Поиск</string>
     <string name="city_text">Город</string>
+    <string name="warning">Введите название города</string>
+    <string name="clouds_text">Облачность</string>
+    <string name="wind_text">Ветер</string>
 </resources>

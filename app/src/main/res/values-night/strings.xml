@@ -4,4 +4,6 @@
     <string name="sunset_text">Время захода</string>
     <string name="searchFieldEditText">Введите название города</string>
     <string name="city_text">Город</string>
+    <string name="clouds_text">Облачность</string>
+    <string name="wind_text">Ветер</string>
 </resources>

@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button searchButton;
     private EditText searchField;
     private TextView cityName;
+    private URL url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,22 +38,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchButton.setOnClickListener(this);
         searchField=findViewById(R.id.searchField);
         cityName=findViewById(R.id.cityName);
+
     }
 
     @Override
     public void onClick(View v) {
-        //URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Samara&lang=ru&appid=c1438b7ab7adcbb5ffee5d716f1141db&units=metric");
-        URL url=buildUrl(searchField.getText().toString());
+        if(TextUtils.isEmpty(searchField.getText().toString())){
+            Toast toast=Toast.makeText(getApplicationContext(), R.string.warning, Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+        url = buildUrl(searchField.getText().toString());
         cityName.setText(searchField.getText().toString());
         new GetData(this).execute(url);
+
+        //URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Samara&lang=ru&appid=c1438b7ab7adcbb5ffee5d716f1141db&units=metric");
     }
     private URL buildUrl (String city){
         String BASE_URL="https://api.openweathermap.org/data/2.5/weather";
         String PARAM_CITY="q";
+        String LANG="lang";
+        String LANG_VAL="ru";
         String PARAM_APPID="appid";
         String appid_value="c1438b7ab7adcbb5ffee5d716f1141db";
+        String UNITS="units";
+        String UNITS_VAL="metric";
 
-        Uri builtUri=Uri.parse(BASE_URL).buildUpon().appendQueryParameter(PARAM_CITY,city).appendQueryParameter(PARAM_APPID,appid_value).build();
+        Uri builtUri=Uri.parse(BASE_URL).buildUpon().appendQueryParameter(PARAM_CITY,city).appendQueryParameter(LANG,LANG_VAL).appendQueryParameter(PARAM_APPID,appid_value).appendQueryParameter(UNITS,UNITS_VAL).build();
         URL url= null;
         try {
             url=new URL(builtUri.toString());
@@ -59,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         Log.d(TAG, "buildUrl: "+url);
         return url;
+
+
     }
 
     @Override
@@ -71,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             TextView temp=findViewById(R.id.temperature);
             temp.setText(weather.getString("temp"));
-
+            
             TextView pressure=findViewById(R.id.pressure);
             pressure.setText(weather.getString("pressure"));
 
