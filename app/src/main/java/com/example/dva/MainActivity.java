@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         url = buildUrl(searchField.getText().toString());
         cityName.setText(searchField.getText().toString());
         new GetData(this).execute(url);
+
         //URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Samara&lang=ru&appid=c1438b7ab7adcbb5ffee5d716f1141db&units=metric");
     }
     private URL buildUrl (String city){
@@ -74,48 +74,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         Log.d(TAG, "buildUrl: "+url);
         return url;
+
+
     }
+
     @Override
     public void processFinish(String output) {
         Log.d(TAG, "processFinish: "+output);
         try {
-            JSONObject resultJSON = new JSONObject(output);
-            JSONObject weatherPoint = resultJSON.getJSONObject("main");
-            JSONObject sys = resultJSON.getJSONObject("sys");
-            JSONObject windSpeed = resultJSON.getJSONObject("wind");
+            JSONObject resultJSON= new JSONObject(output);
+            JSONObject weather= resultJSON.getJSONObject("main");
+            JSONObject sys= resultJSON.getJSONObject("sys");
 
-            JSONArray weatherNow = resultJSON.getJSONArray("weather");
+            TextView temp=findViewById(R.id.temperature);
+            temp.setText(weather.getString("temp"));
+            
+            TextView pressure=findViewById(R.id.pressure);
+            pressure.setText(weather.getString("pressure"));
 
-            TextView description = findViewById(R.id.clouds);
-            String descriptionVal = null;
-            for (int i = 0; i < weatherNow.length(); i++) {
-                JSONObject j = weatherNow.getJSONObject(i);
-                descriptionVal = j.getString("description");
-            }
-            description.setText(descriptionVal);
-
-            TextView temp = findViewById(R.id.temperature);
-            temp.setText(weatherPoint.getString("temp"));
-
-            TextView pressure = findViewById(R.id.pressure);
-            pressure.setText(weatherPoint.getString("pressure"));
-
-            TextView sunrise = findViewById(R.id.timeSunrise);
-            String timeSunrise = sys.getString("sunrise");
-            Locale myLocale = new Locale("ru", "RU");
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", myLocale);
-            String dateString = formatter.format(new Date(Long.parseLong(timeSunrise) * 1000 + (60 * 60 * 1000)));
+            TextView sunrise=findViewById(R.id.timeSunrise);
+            String timeSunrise=sys.getString("sunrise");
+            Locale myLocale=new Locale("ru", "RU");
+            SimpleDateFormat formatter=new SimpleDateFormat("HH:mm:ss", myLocale);
+            String dateString=formatter.format(new Date(Long.parseLong(timeSunrise)*1000+(60*60*1000)));
             sunrise.setText(dateString);
 
-            TextView sunset = findViewById(R.id.timeSunset);
-            String timeSunset = sys.getString("sunset");
+            TextView sunset=findViewById(R.id.timeSunset);
+            String timeSunset=sys.getString("sunset");
             //Locale myLocale=new Locale("ru", "RU");
             //SimpleDateFormat formatter=new SimpleDateFormat("HH:mm:ss", myLocale);
-            dateString = formatter.format(new Date(Long.parseLong(timeSunset) * 1000 + (60 * 60 * 1000)));
+            dateString=formatter.format(new Date(Long.parseLong(timeSunset)*1000+(60*60*1000)));
             sunset.setText(dateString);
-
-            TextView wind = findViewById(R.id.wind);
-            wind.setText(windSpeed.getString("speed"));
 
         }catch (JSONException e){
             e.printStackTrace();
