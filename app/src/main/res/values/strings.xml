@@ -10,6 +10,6 @@
     <string name="searchButtonText">Поиск</string>
     <string name="city_text">Город</string>
     <string name="warning">Введите название города</string>
-    <string name="clouds_text">Облачность</string>
+    <string name="clouds_text">На данный       момент</string>
     <string name="wind_text">Ветер</string>
 </resources>

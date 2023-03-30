@@ -79,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="@string/clouds_text"
                     android:textColor="#616161"
                     android:textSize="20sp" />
@@ -143,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="@string/clouds_text"
                     android:textSize="20sp" />
 
