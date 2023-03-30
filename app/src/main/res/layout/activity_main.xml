@@ -77,8 +77,9 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="@string/clouds_text"
                     android:textColor="#616161"
                     android:textSize="20sp" />
@@ -141,8 +142,9 @@
                 <TextView
                     android:id="@+id/clouds"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="@string/clouds_text"
                     android:textSize="20sp" />
 
